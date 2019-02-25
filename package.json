@@ -1,0 +1,33 @@
+{
+  "name": "orion",
+  "version": "1.0.0",
+  "description": "readsense orion web api",
+  "author": "admin@readsense.cn",
+  "main": "dist/orion.cjs.js",
+  "module": "dist/orion.esm.js",
+  "browser": "dist/orion.js",
+  "scripts": {
+    "build": "rollup -c",
+    "build:test": "rollup -c",
+    "start": " webpack-dev-server --config webpack.dev.js --mode development"
+  },
+  "keywords": [
+    "readsense-orion",
+    "readsense",
+    "orion"
+  ],
+  "dependencies": {
+    "axios": "^0.18.0",
+    "form-data": "^2.3.3"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-latest": "^6.24.1",
+    "rollup": "^1.2.3",
+    "rollup-plugin-babel": "^3.0.4",
+    "rollup-plugin-commonjs": "^9.2.1",
+    "rollup-plugin-json": "^3.1.0",
+    "rollup-plugin-node-resolve": "^4.0.1"
+  }
+}
