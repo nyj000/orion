@@ -1,5 +1,5 @@
-import apiList from './api'
-import http from './http'
+import apiList from './api/index'
+import http from './http/http'
 function init(baseURL, TOKEN) {
   console.info('baseURL', baseURL)
   if ((typeof baseURL) != 'string') {

@@ -78,7 +78,7 @@ const http = function(apiConfig, datas, options, defaultOptions) {
       configs.params = data
     }
     let SERVER_URL = defaultOptions.baseURL
-    configs.url = SERVER_URL + '/' + VERSON + '/' + apiConfig.path
+    configs.url = SERVER_URL + '/' + VERSON + '/api/' + apiConfig.path
     // 登录不需要TOKEN
     if (apiConfig.path === 'api/sign_in') {
       // console.log(configs.data.get('account'))
