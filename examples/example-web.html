@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>使用示例</title>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="../dist/orion.js"></script>
+  <!-- <script src="https://unpkg.com/lib-orion-portal/dist/orion.min.js"></script> -->
+</head>
+<body>
+  <input type="text" value="test">
+  <button onclick="createPerson()">创建用户</button>
+  <pre></pre>
+  <script>
+    var api = new Orion({
+      AppKey: '20d0fbcf66a7419a',
+      AppSecret: 'd7f6e30828654151',
+      // token: '9d4272ebe39b451196f39dc0112e35', // token和AppKey、AppSecret任选其一
+      // AppKey、AppSecret请联系管理员获取，测试账号仅供测试，测试后请及时清空您添加的数据，不要删除或修改他人添加的数据
+    })
+    var params = {
+        name: 'test',
+    }
+    var input = document.querySelector('input')
+    var pre = document.querySelector('pre')
+    function createPerson() {
+      params.name = input.value
+      api.createPerson(params).then(({data}) => {
+        console.log(data)
+        pre.innerHTML = JSON.stringify(data, null, 2)
+        pre.style.color = ''
+        if (/^ok$/i.test(data.status)) {
+          // do something
+        }
+      }).catch((err) => {
+        console.error(err)
+        let _err
+        if (err && err.response) {
+          _err = err.response
+        }
+        pre.innerHTML = JSON.stringify(_err, null, 2)
+        pre.style.color = 'red'
+      })
+    }
+    
+  </script>
+</body>
+</html>
