@@ -6,4 +6,3 @@ node_modules/
 !.gitkeep
 *.log
 *.log.*
-test/
