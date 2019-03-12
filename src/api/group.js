@@ -10,13 +10,19 @@ export default {
   // 用户群组创建
   createGroup: { method: 'POST', path: 'groups' },
   // 用户群组编辑
-  putGroupInfo: { method: 'PUT', path: 'groups/:group_uuid' },
+  setGroupInfo: { method: 'PUT', path: 'groups/:group_uuid' },
   // 用户群组删除
   removeGroup: { method: 'DELETE', path: 'groups/:group_uuid' },
+  // 用户群组用户类表
+  getPeoplesListFromGroup: { method: 'GET', path: 'groups/:group_uuid/people' },
   // 用户群组添加用户
-  addGroupsPeoples: { method: 'POST', path: 'groups/:group_uuid/add_people' },
+  addPeoplesToGroup: { method: 'POST', path: 'groups/:group_uuid/add_people' },
+  // 用户群组添加全部用户
+  addAllPeoplesToGroup: { method: 'POST', path: 'groups/:group_uuid/add_all_people' },
   // 用户群组删除用户
-  removeGroupsPeoples: { method: 'POST', path: 'groups/:group_uuid/remove_people' },
+  removePeoplesFromGroup: { method: 'POST', path: 'groups/:group_uuid/remove_people' },
   // 用户群组清空用户
-  removeAllGroupPeoples: { method: 'POST', path: 'groups/:group_uuid/clear_people' },
+  removeAllPeoplesFromGroup: { method: 'POST', path: 'groups/:group_uuid/clear_people' },
+  // 用户群组通过其他用户组添加用户
+  addPeoplesToGroupFromOtherGroups: { method: 'POST', path: 'groups/:group_uuid/add_group' },
 }

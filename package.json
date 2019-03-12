@@ -1,9 +1,9 @@
 {
-  "name": "rock-test-1",
+  "name": "lib-orion-portal",
   "version": "1.0.0",
   "description": "readsense orion web api",
   "author": "admin@readsense.cn",
-  "main": "lib/orion.js",
+  "main": "lib/orion.min.js",
   "repository": {
     "type": "git",
     "url": "git@github.com:nyj000/orion.git"

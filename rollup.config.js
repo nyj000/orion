@@ -10,7 +10,7 @@ export default [
   {
     input,
     output: {
-      file: 'lib/orion.js',
+      file: 'lib/orion.min.js',
       name: 'orion',
       format: 'umd',
       sourcemap: process.env.NODE_ENV === 'dev'
@@ -24,6 +24,24 @@ export default [
         exclude: 'node_modules/**' // 只编译我们的源代码
       }),
       uglify(),
+    ],
+  },
+  {
+    input,
+    output: {
+      file: 'lib/orion.js',
+      name: 'orion',
+      format: 'umd',
+      sourcemap: process.env.NODE_ENV === 'dev'
+    },
+    external: Object.keys(pkg.dependencies), // 依赖不进行打包
+    plugins: [
+      json(),
+      resolve(),
+      commonjs(),
+      babel({
+        exclude: 'node_modules/**' // 只编译我们的源代码
+      }),
     ],
   },
   // {
