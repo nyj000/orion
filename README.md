@@ -6,9 +6,10 @@
 * 设备管理
 * 设备特征库（含特征下发）
 * 人脸识别
-** [demo](https://github.com/nyj000/orion/examples/example-web.html "demo") **
-** [详细文档](https://www.showdoc.cc/279122901705252?page_id=1589818278369113 "详细文档") **
-** [身份验证方式](https://www.showdoc.cc/279122901705252?page_id=1593441887821782 "身份验证方式") **
+
+* ** [demo](https://nyj000.github.io/orion/examples/example-web.html "demo") **
+* ** [详细文档](https://www.showdoc.cc/279122901705252?page_id=1589818278369113 "详细文档") **
+* ** [身份验证方式](https://www.showdoc.cc/279122901705252?page_id=1593441887821782 "身份验证方式") **
 
 ####  使用示例:
 ##### npm:
@@ -62,6 +63,7 @@
     	console.error(err)
     })
 	// 调用方法会返回一个Promise对象
+<<<<<<< HEAD
 
 ####  接口数据返回格式
 所有的接口返回的数据都是`json`格式，返回数据中都包含`status`字段，表示请求状态:
@@ -76,6 +78,22 @@
 
 - 当`status='error'`时, 表示有异常，此时还会返回 errors对象 数组，例如：
 
+=======
+
+####  接口数据返回格式
+所有的接口返回的数据都是`json`格式，返回数据中都包含`status`字段，表示请求状态:
+- 当`status='ok'` 时，表示无异常，此时还会返回data(内容体)，例如：
+
+      {
+			"data": {
+				"name": "readsense"
+			}
+			"status": "ok"
+	  }
+
+- 当`status='error'`时, 表示有异常，此时还会返回 errors对象 数组，例如：
+
+>>>>>>> master
  		{
 			"errors": [
 				{
