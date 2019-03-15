@@ -107,10 +107,9 @@ const http = function(apiConfig, datas, options, defaultOptions) {
         configs.headers.AppKey = AppKey
         configs.headers.AppSecret = AppSecret
       } else {
-        throw new Error('读取身份信息失败, 请先登录或配置您的appKey/appSecret')
+        throw new Error('读取身份信息失败, 请先登录或配置您的AppKey/AppSecret')
       }
       axios(configs).then(resolve).catch(reject)
-
     }
   })
 }

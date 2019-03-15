@@ -14,8 +14,8 @@ export default {
   getDeviceInfo: { method: 'GET', path: 'devices/:device_uuid' },
   // 设备信息修改
   setDeviceInfo: { method: 'PUT', path: 'devices/:device_uuid' },
-  // 设备切换识别模式
-  setDeviceRecogMode: { method: 'POST', path: 'devices/:device_uuid/set_mode' },
+  // 设备切换模式
+  setDeviceMode: { method: 'POST', path: 'devices/:device_uuid/set_mode' },
   // // 获取设备在线识别的用户组信息
   // getDeviceOnlineGroupsInfo: { method: 'GET', path: 'devices/:device_uuid/online_groups' },
   // 设备删除
@@ -24,25 +24,25 @@ export default {
   // 设备用户列表
   getPeoplesListFromDevice: { method: 'GET', path: 'devices/:device_uuid/offline_people' },
   // 设备添加批量用户
-  addPeoplesToDevice: { method: 'POST', path: 'devices/:device_uuid/add_people' },
+  addPeoplesToDevice: { method: 'POST', path: 'devices/:device_uuid/add_people', options: { timeout: 60000 } },
   // 设备移除批量用户
-  removePeoplesFromDevice: { method: 'POST', path: 'devices/:device_uuid/remove_people' },
+  removePeoplesFromDevice: { method: 'POST', path: 'devices/:device_uuid/remove_people', options: { timeout: 60000 } },
   // 设备清空用户
   removeAllPeoplesFromDevice: {method: 'POST', path: 'devices/:device_uuid/clear'},
   // 设备添加所有用户
-  addAllPeoplesToDevice: { method: 'POST', path: 'devices/:device_uuid/add_all_people' },
+  addAllPeoplesToDevice: { method: 'POST', path: 'devices/:device_uuid/add_all_people', options: { timeout: 60000 } },
   // 设备添加用户组
-  addDevicePeopleByGroups: { method: 'POST', path: 'devices/:device_uuid/add_groups' },
+  addDevicePeopleByGroups: { method: 'POST', path: 'devices/:device_uuid/add_groups', options: { timeout: 60000 } },
   // 设备重设用户组
-  resetDevicePeopleByGroups: { method: 'POST', path: 'devices/:device_uuid/replace_groups' },
+  resetDevicePeopleByGroups: { method: 'POST', path: 'devices/:device_uuid/replace_groups', options: { timeout: 60000 } },
   // 设备移除用户组
-  removeDevicePeopleByGroups: { method: 'POST', path: 'devices/:device_uuid/remove_groups' },
+  removeDevicePeopleByGroups: { method: 'POST', path: 'devices/:device_uuid/remove_groups', options: { timeout: 60000 } },
   // 批量设备添加用户
-  addPersonToDevices: { method: 'POST', path: 'devices_sync_person/:person_uuid/add_to_devices' },
+  addPersonToDevices: { method: 'POST', path: 'devices_sync_person/:person_uuid/add_to_devices', options: { timeout: 60000 } },
   // 批量设备移除用户
-  removePersonFromDevices: { method: 'POST', path: 'devices_sync_person/:person_uuid/remove_from_devices' },
+  removePersonFromDevices: { method: 'POST', path: 'devices_sync_person/:person_uuid/remove_from_devices', options: { timeout: 60000 } },
   // 批量设备重设用户特征
-  resentPersonToDevices: { method: 'POST', path: 'devices_sync_person/:person_uuid/reset_to_devices' },
+  resentPersonToDevices: { method: 'POST', path: 'devices_sync_person/:person_uuid/reset_to_devices', options: { timeout: 60000 } },
 
   // 设备识别记录
   getDevicesIdentifyRecord: { method: 'GET', path: 'device_logs/identify_list' },

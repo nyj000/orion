@@ -10,8 +10,8 @@ export default [
   {
     input,
     output: {
-      file: 'lib/orion.min.js',
-      name: 'orion',
+      file: 'dist/orion.min.js',
+      name: 'Orion',
       format: 'umd',
       sourcemap: process.env.NODE_ENV === 'dev'
     },
@@ -29,8 +29,8 @@ export default [
   {
     input,
     output: {
-      file: 'lib/orion.js',
-      name: 'orion',
+      file: 'dist/orion.js',
+      name: 'Orion',
       format: 'umd',
       sourcemap: process.env.NODE_ENV === 'dev'
     },

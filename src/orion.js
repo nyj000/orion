@@ -5,7 +5,7 @@ let _axios
 class Orion {
   constructor(option) {
     let options = Object.assign({}, option)
-    let { baseUrl, token, AppKey, appSecret } = options
+    let { baseUrl, token, AppKey, AppSecret } = options
     _axios = axios || options._axios
     // console.info('baseUrl', baseUrl)
     if (baseUrl && ((typeof baseUrl) !== 'string')) {
@@ -16,7 +16,7 @@ class Orion {
     }
     this.TOKEN = token
     this.AppKey = AppKey
-    this.appSecret = appSecret
+    this.AppSecret = AppSecret
   }
   setToken(token) {
     if (token && ((typeof token) !== 'string')) {
@@ -47,7 +47,7 @@ for (let key in apiList) {
           TIMEOUT: this.TIMEOUT || 10000,
           TOKEN: this.TOKEN,
           AppKey: this.AppKey,
-          appSecret: this.appSecret,
+          AppSecret: this.AppSecret,
         })
       }
     })

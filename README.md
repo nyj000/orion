@@ -8,6 +8,7 @@
 * 人脸识别
 
 ** [详细文档](https://www.showdoc.cc/279122901705252?page_id=1589818278369113 "详细文档") **
+** [身份验证方式](https://www.showdoc.cc/279122901705252?page_id=1593441887821782 "身份验证方式") **
 
 ####  使用示例:
 ##### npm:
@@ -20,6 +21,7 @@
     	baseUrl: 'https://orion.readsense.cn', # 默认为猎户服务器地址,
     	AppKey: 'xxxx',
     	AppSecret: 'xxxx',
+		// token: 'xxx', // token和AppKey、AppSecret任选其一
     })
     # 使用示例
     var params = {
@@ -42,6 +44,7 @@
     	baseUrl: 'https://orion.readsense.cn', # 默认服务器地址  同时支持http
     	AppKey: 'xxxx',
     	AppSecret: 'xxxx',
+		// token: 'xxx', // token和AppKey、AppSecret任选其一
     })
     # 使用示例
      var params = {
@@ -81,6 +84,3 @@
 			"status": "error"
 	  }
 	
-
- **备注**  
- 
