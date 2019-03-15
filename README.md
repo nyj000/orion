@@ -6,9 +6,10 @@
 * 设备管理
 * 设备特征库（含特征下发）
 * 人脸识别
-** [demo](https://github.com/nyj000/orion/examples/example-web.html "demo") **
-** [详细文档](https://www.showdoc.cc/279122901705252?page_id=1589818278369113 "详细文档") **
-** [身份验证方式](https://www.showdoc.cc/279122901705252?page_id=1593441887821782 "身份验证方式") **
+
+* ** [demo](https://github.com/nyj000/orion/examples/example-web.html "demo") **
+* ** [详细文档](https://www.showdoc.cc/279122901705252?page_id=1589818278369113 "详细文档") **
+* ** [身份验证方式](https://www.showdoc.cc/279122901705252?page_id=1593441887821782 "身份验证方式") **
 
 ####  使用示例:
 ##### npm:
