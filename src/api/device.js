@@ -44,6 +44,13 @@ export default {
   // 批量设备重设用户特征
   resentPersonToDevices: { method: 'POST', path: 'devices_sync_person/:person_uuid/reset_to_devices', options: { timeout: 60000 } },
 
+  // 特征下发重试列表
+  getDeviceBufferList: { method: 'GET', path: 'devices/:device_uuid/buffer_list' },
+  // 特征下发重试删除
+  removeDeviceBuffer: { method: 'DELETE', path: 'device_buffers/:buffer_uuid' },
+  // 特征下发重试清空
+  clearDeviceBuffer: { method: 'POST', path: 'devices/:device_uuid/buffer_clear' },
+
   // 设备识别记录
   getDevicesIdentifyRecord: { method: 'GET', path: 'device_logs/identify_list' },
   // 设备状态日志

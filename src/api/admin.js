@@ -6,6 +6,15 @@ export default {
   login: { method: 'POST', path: 'sign_in' },
   // 登出
   logout: { method: 'POST', path: 'sign_out' },
+  // 个人资料
+  getUserInfo: { method: 'GET', path: 'user/profile' },
+  // 修改用户信息
+  setUserInfo: { method: 'PUT', path: 'user/profile' },
+  // 修改用户授权信息
+  setUserGateAuth: { method: 'PUT', path: 'user/gate_auth' },
+  // 重置账号Secret,同时授权token 会更新
+  refreshSecret: { method: 'POST', path: 'user/refresh_token' },
+
   // 查看最新版本
   // check_upgrade: { method: 'GET', path: 'services/check_upgrade' },
   // 设备列表、全部

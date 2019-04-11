@@ -2,10 +2,7 @@ export default {
   /**
    * 账号管理
    * */
-  // 修改用户授权信息
-  setUserGateAuth: { method: 'PUT', path: 'user/gate_auth' },
-  // 重置账号Secret,同时授权token 会更新
-  refreshSecret: { method: 'POST', path: 'user/refresh_token' },
+
   // 账号详情
   getAccountInfo: { method: 'GET', path: 'users/:user_uuid' },
   // 账号列表

@@ -7,6 +7,7 @@
 * 设备特征库（含特征下发）
 * 人脸识别
 
+
 * ** [demo](https://nyj000.github.io/orion/examples/example-web.html "demo") **
 * ** [详细文档](https://www.showdoc.cc/279122901705252?page_id=1589818278369113 "详细文档") **
 * ** [身份验证方式](https://www.showdoc.cc/279122901705252?page_id=1593441887821782 "身份验证方式") **
@@ -14,18 +15,18 @@
 ####  使用示例:
 ##### npm:
 
-    # 安装
+    // 安装
     npm install -S lib-orion-portal
-    # 初始化
+    // 初始化
     const Orion = require('lib-orion-portal')
     var api = new Orion({
     	baseUrl: 'https://orion.readsense.cn', # 默认为猎户服务器地址，可更改为自己部署的服务器地址
     	AppKey: '20d0fbcf66a7419a',
     	AppSecret: 'd7f6e30828654151',
-		// token: '9d4272ebe39b451196f39dc0112e35', // token和AppKey、AppSecret任选其一
+		// token: 'xxxx', // token和AppKey、AppSecret任选其一
 		// AppKey、AppSecret请联系管理员获取，测试账号仅供测试
     })
-    # 使用示例
+    // 使用示例
     var params = {
     	name: 'test',
     }
@@ -38,18 +39,18 @@
     	console.error(err)
     })
 ##### javaScript:
-    # 引入 
+    // 引入 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/lib-orion-portal/dist/orion.min.js"></script>
-    # 初始化
+    // 初始化
     var api = new Orion({
     	baseUrl: 'https://orion.readsense.cn',  // 默认为猎户服务器地址，可更改为自己部署的服务器地址
     	AppKey: '20d0fbcf66a7419a',
     	AppSecret: 'd7f6e30828654151',
-		// token: '9d4272ebe39b451196f39dc0112e35', // token和AppKey、AppSecret任选其一
+		// token: 'xxxx', // token和AppKey、AppSecret任选其一
 		// AppKey、AppSecret请联系管理员获取，测试账号仅供测试
     })
-   	# 使用示例
+   	// 使用示例
    
      var params = {
     	name: 'test',
