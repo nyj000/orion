@@ -19,6 +19,10 @@ export default {
   // check_upgrade: { method: 'GET', path: 'services/check_upgrade' },
   // 设备列表、全部
   getAllDevicesList: { method: 'GET', path: 'all_devices' },
+  // 设备删除
+  devicesDelete: { method: 'POST', path: 'devices/:device_uuid/full_delete' },
+  // 设置日志追踪状态
+  switchLogTrace: { method: 'POST', path: 'devices/:device_uuid/switch_log_trace' },
   // 重新同步特征
   syncFeatures: { method: 'POST', path: 'services/sync_feature', options: { timeout: 600000 } },
   /**
@@ -34,6 +38,10 @@ export default {
   getDeviceProfilesInfo: { method: 'GET', path: 'device_profiles/:mac_address' },
   // 更新设备配置
   setDeviceProfilesInfo: { method: 'PUT', path: 'device_profiles/:mac_address' },
+  // 设置设备配置模板
+  setDeviceProfilesTemp: { method: 'PUT', path: 'device_profiles/:mac_address/set_temp' },
+  // 批量应用模板
+  applyDeviceProfilesTemp: { method: 'POST', path: 'device_profiles/:mac_address/apply_to' },
   /**
    * 设备升级管理
    * */

@@ -1,5 +1,4 @@
 const VERSON = 'v1' // 后台版本
-let LOGIN_TOKEN
 
 // @params 接口名 数据对象 动态参数(可选)
 const http = function(apiConfig, datas, options, defaultOptions) {
@@ -40,6 +39,7 @@ const http = function(apiConfig, datas, options, defaultOptions) {
       headers: {
       },
     }
+    // console.log('config', config)
     // 避免headers冲突
     if (option) {
       config.headers = Object.assign(config.headers, option.headers)
@@ -47,11 +47,13 @@ const http = function(apiConfig, datas, options, defaultOptions) {
     }
     // console.log('data', datas)
     let configs = Object.assign(config, option)
+    // 添加請求來源信息
+    data.request_channel = 'javascript_sdk'
     if (/post|put/i.test(apiConfig.method)) {
       // 全部使用form表单的格式提交
       configs['Content-Type'] = 'multipart/form-data'
-      let formData
       let nodeEnv
+      let formData
       if (typeof window === 'undefined') {
         let __FormData = require('form-data')
         nodeEnv = true
@@ -74,15 +76,12 @@ const http = function(apiConfig, datas, options, defaultOptions) {
           }
         }
       }
-      // 添加請求來源信息
-      formData.append('request_channel', 'javascript_sdk')
       configs.data = formData
       if (nodeEnv) {
         config.headers = Object.assign(config.headers, formData.getHeaders())
       }
     } else if (/get|delete/i.test(apiConfig.method)) {
       // 添加請求來源信息
-      data.request_channel = 'javascript_sdk'
       configs.params = data
     }
     let SERVER_URL = defaultOptions.baseURL
@@ -90,17 +89,9 @@ const http = function(apiConfig, datas, options, defaultOptions) {
     // 登录不需要TOKEN
     if (apiConfig.path === 'sign_in') {
       // console.log(configs.data.get('account'))
-      axios(configs).then(function(e) {
-        let data = e.data
-        if (/^ok$/i.test(data.status)) {
-          // 保存token
-          LOGIN_TOKEN = data.data.user.token
-        }
-        resolve(e)
-      }).catch(reject)
+      axios(configs).then(resolve).catch(reject)
     } else {
-      let TOKEN = defaultOptions.TOKEN || LOGIN_TOKEN
-      let {AppKey, AppSecret} = defaultOptions
+      let {TOKEN, AppKey, AppSecret} = defaultOptions
       if (TOKEN) {
         configs.headers.Authorization = `Bearer ${TOKEN}`
       } else if (AppKey) {

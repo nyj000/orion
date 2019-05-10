@@ -8,6 +8,8 @@ export default {
   syncDevices: { method: 'GET', path: 'devices_sync' },
   // 设备认领
   bindDevice: { method: 'POST', path: 'devices' },
+  // 设备重启
+  rebootOrionApp: { method: 'POST', path: 'devices/:device_uuid/reboot_app' },
   // 同步至银行
   syncDeviceToBank: { method: 'POST', path: 'devices/:device_uuid/sync_to_bank' },
   // 设备详情
@@ -16,6 +18,8 @@ export default {
   setDeviceInfo: { method: 'PUT', path: 'devices/:device_uuid' },
   // 设备切换模式
   setDeviceMode: { method: 'POST', path: 'devices/:device_uuid/set_mode' },
+  // 清除设备记录
+  clearDeviceLogs: { method: 'POST', path: 'devices/:device_uuid/clear_logs' },
   // // 获取设备在线识别的用户组信息
   // getDeviceOnlineGroupsInfo: { method: 'GET', path: 'devices/:device_uuid/online_groups' },
   // 设备删除
