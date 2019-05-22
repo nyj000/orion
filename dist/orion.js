@@ -342,11 +342,11 @@
           success: function success(res) {
             var headers = res.header;
             // 带分页的数据从响应头获取分页信息
-            var total = headers['x-total-count'];
+            var total = headers['X-Total-Count'];
             if (!isNaN(total - 0)) {
-              res.data.total = headers['x-total-count'] - 0;
-              res.data.page = headers['x-current-page'] - 0;
-              res.data.per_page = headers['x-per-page'] - 0;
+              res.data.total = headers['X-Total-Count'] - 0;
+              res.data.page = headers['X-Current-Page'] - 0;
+              res.data.per_page = headers['X-Per-Page'] - 0;
             }
             resolve(res);
           },
