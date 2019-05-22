@@ -1,5 +1,6 @@
 import apiList from './api/index'
 import http from './http/http'
+import axios from './http/axios.config'
 const IS_WX = (typeof wx === 'object' && typeof wx.request === 'function') // eslint-disable-line
 let _axios
 class Orion {
@@ -7,7 +8,7 @@ class Orion {
     let options = Object.assign({}, option)
     let { baseUrl, token, AppKey, AppSecret } = options
     if (!IS_WX) {
-      _axios = options._axios || require('./http/axios.config').default
+      _axios = options._axios || axios
     }
     // console.info('baseUrl', baseUrl)
     if (baseUrl && ((typeof baseUrl) !== 'string')) {

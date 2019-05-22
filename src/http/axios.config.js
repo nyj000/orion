@@ -1,5 +1,10 @@
-import axios from 'axios'
-axios.interceptors.response.use(function (response) {
+let _axios
+if (typeof window !== 'undefined' && window.axios) {
+  _axios = window.axios
+} else {
+  _axios = require('axios')
+}
+_axios.interceptors.response.use(function (response) {
   let headers = response.headers
   // 带分页的数据从响应头获取分页信息
   let total = headers['x-total-count']
@@ -13,4 +18,4 @@ axios.interceptors.response.use(function (response) {
   return Promise.reject(err)
 })
 
-export default axios
+export default _axios
