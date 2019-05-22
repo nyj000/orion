@@ -339,7 +339,17 @@
         delete configs.headers;
         Object.assign(configs, {
           dataType: 'json',
-          success: resolve,
+          success: function success(res) {
+            var headers = res.header;
+            // 带分页的数据从响应头获取分页信息
+            var total = headers['x-total-count'];
+            if (!isNaN(total - 0)) {
+              res.data.total = headers['x-total-count'] - 0;
+              res.data.page = headers['x-current-page'] - 0;
+              res.data.per_page = headers['x-per-page'] - 0;
+            }
+            resolve(res);
+          },
           fail: reject
         });
         if (configs.method === 'POST' && data.image) {
