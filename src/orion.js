@@ -1,12 +1,14 @@
 import apiList from './api/index'
-import axios from './http/axios.config'
 import http from './http/http'
+const IS_WX = (typeof wx === 'object' && typeof wx.request === 'function') // eslint-disable-line
 let _axios
 class Orion {
   constructor(option) {
     let options = Object.assign({}, option)
     let { baseUrl, token, AppKey, AppSecret } = options
-    _axios = axios || options._axios
+    if (!IS_WX) {
+      _axios = options._axios || require('./http/axios.config').default
+    }
     // console.info('baseUrl', baseUrl)
     if (baseUrl && ((typeof baseUrl) !== 'string')) {
       throw new Error('解析服务器地址失败，请检查您的服务器地址')

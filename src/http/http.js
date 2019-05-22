@@ -1,5 +1,5 @@
 const VERSON = 'v1' // 后台版本
-
+const IS_WX = (typeof wx === 'object' && typeof wx.request === 'function') // eslint-disable-line
 // @params 接口名 数据对象 动态参数(可选)
 const http = function(apiConfig, datas, options, defaultOptions) {
   let { axios } = defaultOptions
@@ -46,20 +46,55 @@ const http = function(apiConfig, datas, options, defaultOptions) {
       delete option.headers
     }
     // console.log('data', datas)
-    let configs = Object.assign(config, option)
+    let configs = Object.assign({}, config, option)
     // 添加請求來源信息
     data.request_channel = 'javascript_sdk'
+    let SERVER_URL = defaultOptions.baseURL
+    configs.url = apiConfig.fullUrl || (SERVER_URL + '/' + VERSON + '/api/' + apiConfig.path)
+    // 非登录接口设置TOKEN
+    if (apiConfig.path !== 'sign_in') {
+      let {TOKEN, AppKey, AppSecret} = defaultOptions
+      if (TOKEN) {
+        configs.headers.Authorization = `Bearer ${TOKEN}`
+      } else if (AppKey) {
+        configs.headers.AppKey = AppKey
+        configs.headers.AppSecret = AppSecret
+      } else {
+        throw new Error('读取身份信息失败, 请先配置您的AppKey/AppSecret')
+      }
+    }
+    // 兼容小程序环境
+    if (IS_WX) {
+      configs.header = Object.assign({}, configs.headers)
+      delete configs.headers
+      Object.assign(configs, {
+        dataType: 'json',
+        success: resolve,
+        fail: reject,
+      })
+      if (configs.method === 'POST' && data.image) {
+        configs.filePath = data.image
+        delete data.image
+        configs.name = 'image'
+        configs.formData = data
+        wx.uploadFile(configs) // eslint-disable-line
+      } else {
+        configs.data = data
+        wx.request(configs) // eslint-disable-line
+      }
+      return
+    }
     if (/post|put/i.test(apiConfig.method)) {
       // 全部使用form表单的格式提交
       configs['Content-Type'] = 'multipart/form-data'
       let nodeEnv
       let formData
-      if (typeof window === 'undefined') {
+      if (typeof FormData === 'undefined') {
         let __FormData = require('form-data')
         nodeEnv = true
         formData = new __FormData()
       } else {
-        formData = new window.FormData()
+        formData = new FormData()
       }
       for (let key in data) {
         if (Object.hasOwnProperty.call(data, key)) {
@@ -78,30 +113,16 @@ const http = function(apiConfig, datas, options, defaultOptions) {
       }
       configs.data = formData
       if (nodeEnv) {
-        config.headers = Object.assign(config.headers, formData.getHeaders())
+        try {
+          config.headers = Object.assign(config.headers, formData.getHeaders())
+        } catch (e) {
+        }
       }
     } else if (/get|delete/i.test(apiConfig.method)) {
       // 添加請求來源信息
       configs.params = data
     }
-    let SERVER_URL = defaultOptions.baseURL
-    configs.url = SERVER_URL + '/' + VERSON + '/api/' + apiConfig.path
-    // 登录不需要TOKEN
-    if (apiConfig.path === 'sign_in') {
-      // console.log(configs.data.get('account'))
-      axios(configs).then(resolve).catch(reject)
-    } else {
-      let {TOKEN, AppKey, AppSecret} = defaultOptions
-      if (TOKEN) {
-        configs.headers.Authorization = `Bearer ${TOKEN}`
-      } else if (AppKey) {
-        configs.headers.AppKey = AppKey
-        configs.headers.AppSecret = AppSecret
-      } else {
-        throw new Error('读取身份信息失败, 请先登录或配置您的AppKey/AppSecret')
-      }
-      axios(configs).then(resolve).catch(reject)
-    }
+    axios(configs).then(resolve).catch(reject)
   })
 }
 // module.exports = http

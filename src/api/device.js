@@ -8,6 +8,8 @@ export default {
   syncDevices: { method: 'GET', path: 'devices_sync' },
   // 设备认领
   bindDevice: { method: 'POST', path: 'devices' },
+  // 设备删除
+  unbindDevice: { method: 'DELETE', path: 'devices/:device_uuid' },
   // 设备重启
   rebootOrionApp: { method: 'POST', path: 'devices/:device_uuid/reboot_app' },
   // 同步至银行
@@ -22,8 +24,8 @@ export default {
   clearDeviceLogs: { method: 'POST', path: 'devices/:device_uuid/clear_logs' },
   // // 获取设备在线识别的用户组信息
   // getDeviceOnlineGroupsInfo: { method: 'GET', path: 'devices/:device_uuid/online_groups' },
-  // 设备删除
-  unbindDevice: { method: 'DELETE', path: 'devices/:device_uuid' },
+  // 设置设备推流状态
+  setDevicePushFliwStatus: { method: 'POST', path: 'devices/:device_uuid/switch_push_flow' },
 
   // 设备用户列表
   getPeoplesListFromDevice: { method: 'GET', path: 'devices/:device_uuid/offline_people' },
