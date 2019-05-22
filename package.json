@@ -1,6 +1,6 @@
 {
   "name": "lib-orion-portal",
-  "version": "1.0.0",
+  "version": "1.1.1-beta",
   "description": "readsense orion web api",
   "author": "admin@readsense.cn",
   "main": "dist/orion.min.js",
@@ -11,7 +11,12 @@
   "scripts": {
     "build": "rollup -c",
     "build:test": "rollup -c",
-    "start": " webpack-dev-server --config webpack.dev.js --mode development"
+    "start": " webpack-dev-server --config webpack.dev.js --mode development",
+    "login": "npm login --registry http://registry.npmjs.org",
+    "publish": "npm publish --registry http://registry.npmjs.org",
+    "publish:M": "npm version major && npm run publish",
+    "publish:m": "npm version minor && npm run publish",
+    "publish:p": "npm version patch && npm run publish"
   },
   "keywords": [
     "readsense-orion",
