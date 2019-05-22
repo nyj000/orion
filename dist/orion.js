@@ -414,8 +414,30 @@
     });
   };
 
-  var IS_WX$1 = (typeof wx === 'undefined' ? 'undefined' : _typeof(wx)) === 'object' && typeof wx.request === 'function'; // eslint-disable-line
   var _axios = void 0;
+  if (typeof window !== 'undefined' && window.axios) {
+    _axios = window.axios;
+  } else {
+    _axios = require('axios');
+  }
+  _axios.interceptors.response.use(function (response) {
+    var headers = response.headers;
+    // 带分页的数据从响应头获取分页信息
+    var total = headers['x-total-count'];
+    if (!isNaN(total - 0)) {
+      response.data.total = headers['x-total-count'] - 0;
+      response.data.page = headers['x-current-page'] - 0;
+      response.data.per_page = headers['x-per-page'] - 0;
+    }
+    return response;
+  }, function (err) {
+    return Promise.reject(err);
+  });
+
+  var axios = _axios;
+
+  var IS_WX$1 = (typeof wx === 'undefined' ? 'undefined' : _typeof(wx)) === 'object' && typeof wx.request === 'function'; // eslint-disable-line
+  var _axios$1 = void 0;
 
   var Orion = function () {
     function Orion(option) {
@@ -428,7 +450,7 @@
           AppSecret = options.AppSecret;
 
       if (!IS_WX$1) {
-        _axios = options._axios || require('./http/axios.config').default;
+        _axios$1 = options._axios || axios;
       }
       // console.info('baseUrl', baseUrl)
       if (baseUrl && typeof baseUrl !== 'string') {
@@ -472,7 +494,7 @@
           var api = JSON.parse(JSON.stringify(apiList[key]));
           // console.log(222, api, data)
           return http(api, data, options, {
-            axios: _axios,
+            axios: _axios$1,
             baseURL: this.baseUrl,
             TIMEOUT: this.TIMEOUT || 10000,
             TOKEN: this.TOKEN,
