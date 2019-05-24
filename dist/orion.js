@@ -340,13 +340,15 @@
         Object.assign(configs, {
           dataType: 'json',
           success: function success(res) {
-            var headers = res.header;
-            // 带分页的数据从响应头获取分页信息
-            var total = headers['X-Total-Count'];
-            if (!isNaN(total - 0)) {
-              res.data.total = headers['X-Total-Count'] - 0;
-              res.data.page = headers['X-Current-Page'] - 0;
-              res.data.per_page = headers['X-Per-Page'] - 0;
+            if (!data.image) {
+              var headers = res.header;
+              // 带分页的数据从响应头获取分页信息
+              var total = headers['X-Total-Count'];
+              if (!isNaN(total - 0)) {
+                res.data.total = headers['X-Total-Count'] - 0;
+                res.data.page = headers['X-Current-Page'] - 0;
+                res.data.per_page = headers['X-Per-Page'] - 0;
+              }
             }
             resolve(res);
           },
@@ -415,12 +417,14 @@
   };
 
   var _axios = void 0;
+  var IS_WX$1 = (typeof wx === 'undefined' ? 'undefined' : _typeof(wx)) === 'object' && typeof wx.request === 'function'; // eslint-disable-line
+
   if (typeof window !== 'undefined' && window.axios) {
     _axios = window.axios;
-  } else {
+  } else if (!IS_WX$1) {
     _axios = require('axios');
   }
-  _axios.interceptors.response.use(function (response) {
+  _axios && _axios.interceptors.response.use(function (response) {
     var headers = response.headers;
     // 带分页的数据从响应头获取分页信息
     var total = headers['x-total-count'];
@@ -436,7 +440,7 @@
 
   var axios = _axios;
 
-  var IS_WX$1 = (typeof wx === 'undefined' ? 'undefined' : _typeof(wx)) === 'object' && typeof wx.request === 'function'; // eslint-disable-line
+  var IS_WX$2 = (typeof wx === 'undefined' ? 'undefined' : _typeof(wx)) === 'object' && typeof wx.request === 'function'; // eslint-disable-line
   var _axios$1 = void 0;
 
   var Orion = function () {
@@ -449,7 +453,7 @@
           AppKey = options.AppKey,
           AppSecret = options.AppSecret;
 
-      if (!IS_WX$1) {
+      if (!IS_WX$2) {
         _axios$1 = options._axios || axios;
       }
       // console.info('baseUrl', baseUrl)

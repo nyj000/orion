@@ -1,10 +1,12 @@
 let _axios
+const IS_WX = (typeof wx === 'object' && typeof wx.request === 'function') // eslint-disable-line
+
 if (typeof window !== 'undefined' && window.axios) {
   _axios = window.axios
-} else {
+} else if (!IS_WX) {
   _axios = require('axios')
 }
-_axios.interceptors.response.use(function (response) {
+_axios && _axios.interceptors.response.use(function (response) {
   let headers = response.headers
   // 带分页的数据从响应头获取分页信息
   let total = headers['x-total-count']

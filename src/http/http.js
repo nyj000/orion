@@ -70,13 +70,15 @@ const http = function(apiConfig, datas, options, defaultOptions) {
       Object.assign(configs, {
         dataType: 'json',
         success: function (res) {
-          let headers = res.header
-          // 带分页的数据从响应头获取分页信息
-          let total = headers['X-Total-Count']
-          if (!isNaN(total - 0)) {
-            res.data.total = headers['X-Total-Count'] - 0
-            res.data.page = headers['X-Current-Page'] - 0
-            res.data.per_page = headers['X-Per-Page'] - 0
+          if (!data.image) {
+            let headers = res.header
+            // 带分页的数据从响应头获取分页信息
+            let total = headers['X-Total-Count']
+            if (!isNaN(total - 0)) {
+              res.data.total = headers['X-Total-Count'] - 0
+              res.data.page = headers['X-Current-Page'] - 0
+              res.data.per_page = headers['X-Per-Page'] - 0
+            }
           }
           resolve(res)
         },

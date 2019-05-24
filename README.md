@@ -15,7 +15,7 @@
 ####  使用示例:
 ##### npm:
 
-    // 安装
+    // 安装 (微信小程序内使用 npm i lib-orion-portal@latest -p)
     npm install -S lib-orion-portal
     // 初始化
     const Orion = require('lib-orion-portal')
