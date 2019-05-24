@@ -70,15 +70,13 @@ const http = function(apiConfig, datas, options, defaultOptions) {
       Object.assign(configs, {
         dataType: 'json',
         success: function (res) {
-          if (!data.image) {
-            let headers = res.header
-            // 带分页的数据从响应头获取分页信息
-            let total = headers['X-Total-Count']
-            if (!isNaN(total - 0)) {
-              res.data.total = headers['X-Total-Count'] - 0
-              res.data.page = headers['X-Current-Page'] - 0
-              res.data.per_page = headers['X-Per-Page'] - 0
-            }
+          let headers = res.header
+          // 带分页的数据从响应头获取分页信息
+          let total = headers['X-Total-Count']
+          if (!isNaN(total - 0)) {
+            res.data.total = headers['X-Total-Count'] - 0
+            res.data.page = headers['X-Current-Page'] - 0
+            res.data.per_page = headers['X-Per-Page'] - 0
           }
           resolve(res)
         },
@@ -89,6 +87,7 @@ const http = function(apiConfig, datas, options, defaultOptions) {
         delete data.image
         configs.name = 'image'
         configs.formData = data
+        configs.success = resolve
         wx.uploadFile(configs) // eslint-disable-line
       } else {
         configs.data = data

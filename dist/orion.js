@@ -340,15 +340,13 @@
         Object.assign(configs, {
           dataType: 'json',
           success: function success(res) {
-            if (!data.image) {
-              var headers = res.header;
-              // 带分页的数据从响应头获取分页信息
-              var total = headers['X-Total-Count'];
-              if (!isNaN(total - 0)) {
-                res.data.total = headers['X-Total-Count'] - 0;
-                res.data.page = headers['X-Current-Page'] - 0;
-                res.data.per_page = headers['X-Per-Page'] - 0;
-              }
+            var headers = res.header;
+            // 带分页的数据从响应头获取分页信息
+            var total = headers['X-Total-Count'];
+            if (!isNaN(total - 0)) {
+              res.data.total = headers['X-Total-Count'] - 0;
+              res.data.page = headers['X-Current-Page'] - 0;
+              res.data.per_page = headers['X-Per-Page'] - 0;
             }
             resolve(res);
           },
@@ -359,6 +357,7 @@
           delete data.image;
           configs.name = 'image';
           configs.formData = data;
+          configs.success = resolve;
           wx.uploadFile(configs); // eslint-disable-line
         } else {
           configs.data = data;
